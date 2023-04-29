@@ -39,7 +39,7 @@ inputs = [
 
 [project]
 name = "jinja2-arrow"
-version = "0.1.4"
+version = "0.1.5"
 description = ""
 dependencies = [
     "arrow>=1.2.3",
