@@ -1,25 +1,24 @@
 import arrow
 from jinja2.ext import Extension
+from datetime import datetime
+from jinja2.environment import Environment
 
 
 class ArrowExtension(Extension):
-    def __init__(self, environment):
-        super(ArrowExtension, self).__init__(environment)
+    def __init__(self, environment: Environment) -> None:
+        super().__init__(environment)
 
-        def year(datetime_obj):
-            return arrow.get(datetime_obj).year
+        def year(datetime_obj: datetime) -> str:
+            return str(arrow.get(datetime_obj).year)
 
-        def humanize(datetime_obj):
-            a = arrow.get(datetime_obj)
-            return a.humanize()
+        def humanize(datetime_obj: datetime) -> str:
+            return arrow.get(datetime_obj).humanize()
 
-        def date_format(datetime_obj):
-            a = arrow.get(datetime_obj)
-            return a.format("MMMM D, YYYY")
+        def date_format(datetime_obj: datetime) -> str:
+            return arrow.get(datetime_obj).format("MMMM D, YYYY")
 
-        def time_format(datetime_obj):
-            a = arrow.get(datetime_obj)
-            return a.format("h:mm a").replace(":00", "")
+        def time_format(datetime_obj: datetime) -> str:
+            return arrow.get(datetime_obj).format("h:mm a").replace(":00", "")
 
         arrow_filters = dict(
             year=year,
