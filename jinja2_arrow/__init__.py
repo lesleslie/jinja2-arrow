@@ -26,4 +26,4 @@ class ArrowExtension(Extension):
             format_date=date_format,
             format_time=time_format,
         )
-        environment.filters.update(arrow_filters)
+        environment.filters.update(arrow_filters)  # type: ignore
