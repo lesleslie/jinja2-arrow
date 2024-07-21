@@ -1,7 +1,8 @@
-import arrow
-from jinja2.ext import Extension
 from datetime import datetime
+
+import arrow
 from jinja2.environment import Environment
+from jinja2.ext import Extension
 
 
 class ArrowExtension(Extension):

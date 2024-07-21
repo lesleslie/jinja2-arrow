@@ -1,12 +1,6 @@
-[tool.pdm.options]
-config = [
-    "python.use_venv",
-    "true",
-]
-
 [tool.pdm.dev-dependencies]
 dev = [
-    "crackerjack>=0.6.21",
+    "crackerjack>=0.8.10",
 ]
 
 [tool.ruff]
@@ -14,15 +8,39 @@ line-length = 88
 target-version = "py312"
 fix = true
 show-fixes = true
-show-source = true
+output-format = "full"
 
-[tool.ruff.isort]
-force-single-line = true
+[tool.ruff.format]
+docstring-code-format = true
 
-[tool.ruff.mccabe]
-max-complexity = 10
+[tool.ruff.lint]
+ignore = [
+    "F821",
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D106",
+    "D107",
+]
+extend-select = [
+    "I",
+    "C901",
+    "D",
+]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.isort]
+no-lines-before = [
+    "first-party",
+    "local-folder",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 11
+
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.black]
@@ -37,9 +55,10 @@ paths = [
 deps-file = "pyproject.toml"
 exclude-deps = [
     "pytest",
-    "autotyping",
+    "pdm",
     "pdm-bump",
     "pre-commit",
+    "autotyping",
 ]
 
 [tool.refurb]
@@ -50,15 +69,22 @@ target = [
     "jinja2_arrow",
 ]
 skips = [
-    "B603",
     "B404",
-    "B403",
     "B113",
+    "B403",
+    "B603",
 ]
 
 [tool.pyright]
+verboseOutput = true
 include = [
     "jinja2_arrow",
+]
+exclude = [
+    "scratch",
+]
+extraPaths = [
+    "__pypackages__/3.12/lib/",
 ]
 typeCheckingMode = "strict"
 reportMissingTypeStubs = false
@@ -69,14 +95,20 @@ reportUnknownVariableType = false
 reportUnknownArgumentType = false
 reportPrivateUsage = "warning"
 pythonVersion = "3.12"
+pythonPlatform = "Darwin"
+
+[tool.codespell]
+skip = "*/data/*"
+quiet-level = 3
+ignore-words-list = "crate,uptodate"
 
 [project]
 name = "jinja2-arrow"
-version = "0.2.0"
+version = "0.2.1"
 description = ""
 dependencies = [
     "arrow>=1.3.0",
-    "jinja2>=3.1.2",
+    "jinja2>=3.1.4",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
